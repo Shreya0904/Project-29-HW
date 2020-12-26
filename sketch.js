@@ -25,14 +25,16 @@ function setup(){
     box6= new Box(450,280,30,40);
     box7= new Box(420,280,30,40);
 
-    polygon=new Polygon(92,185,60);
-    slingshot=new Slingshot(this.polygon,{x:200,y:250});
+    
 
+    polygon=new Polygon(92,185,60);
+    //slingshot=new Slingshot(this.polygon,{x:200,y:250});
+    Engine.run(engine);
 }
 
-function draw(){
+function draw(){ 
     background("red");
-    Engine.update(engine);
+    //Engine.update(engine);
 
     ground.display();
     base1.display();
@@ -50,4 +52,13 @@ function draw(){
     slingshot.display();
 
  text(mouseX+","+mouseY,mouseX,mouseY)
+}
+
+function mouseDragged(){
+    Matter.Body.setPosition(this.polygon.body, {x: mouseX , y: mouseY});
+}
+
+
+function mouseReleased(){
+    slingshot.fly();
 }
